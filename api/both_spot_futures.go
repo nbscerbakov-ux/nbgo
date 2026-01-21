@@ -11,8 +11,8 @@ import (
 func main2() {
 	spotWs, err := gate.NewWsService(nil, nil, gate.NewConnConfFromOption(&gate.ConfOptions{
 		URL:          gate.BaseUrl,
-		Key:          "YOUR_API_KEY",
-		Secret:       "YOUR_API_SECRET",
+		Key:          "38e92d81c9612ed8c46bbae3484c06a4",
+		Secret:       "44f78afbb7054ceffd8a87eef39e01cf39551315a8245531447b299c46ccaeaa",
 		MaxRetryConn: 10,
 	}))
 	if err != nil {
@@ -22,8 +22,8 @@ func main2() {
 
 	futureWs, err := gate.NewWsService(nil, nil, gate.NewConnConfFromOption(&gate.ConfOptions{
 		URL:          gate.FuturesUsdtUrl,
-		Key:          "YOUR_API_KEY",
-		Secret:       "YOUR_API_SECRET",
+		Key:          "38e92d81c9612ed8c46bbae3484c06a4",
+		Secret:       "44f78afbb7054ceffd8a87eef39e01cf39551315a8245531447b299c46ccaeaa",
 		MaxRetryConn: 10,
 	}))
 	if err != nil {

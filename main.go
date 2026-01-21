@@ -11,6 +11,7 @@ import (
 	"github.com/textolytics/nbgo/core"
 	"github.com/textolytics/nbgo/dw"
 	"github.com/textolytics/nbgo/gw"
+	"github.com/textolytics/nbgo/http"
 	"github.com/textolytics/nbgo/logs"
 	"github.com/textolytics/nbgo/mb"
 	"github.com/textolytics/nbgo/mon"
@@ -121,6 +122,13 @@ func main() {
 
 	// Initialize task executor
 	_ = task.NewExecutor(4, 3, 30*time.Second)
+
+	// Start HTTP API server
+	apiServer := http.NewServer(coreRegistry, configManager, appLogger, "8080", 30*time.Second)
+	if err := apiServer.Start(ctx); err != nil {
+		appLogger.Error("Failed to start HTTP API server", "error", err.Error())
+		os.Exit(1)
+	}
 
 	// Start runtime
 	if err := runtime.Start(ctx); err != nil {

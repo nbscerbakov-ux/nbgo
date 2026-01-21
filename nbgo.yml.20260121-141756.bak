@@ -1,0 +1,116 @@
+version: "1.0"
+
+name: nbgo
+description: "Market Data System - NB Go Trading Platform"
+
+# SDK Providers
+sdks:
+  c:
+    enabled: true
+    documentation: "https://zeromq.org/languages/c/"
+  rust:
+    enabled: true
+    documentation: "https://github.com/modelcontextprotocol/rust-sdk"
+  go:
+    enabled: true
+    documentation: "https://go.dev/doc/tutorial/web-service-gin"
+    version: "1.22.3"
+  python:
+    enabled: true
+    documentation: "https://www.python.org/"
+    version: "3.11"
+  flutter:
+    enabled: false
+    documentation: "https://docs.flutter.dev/"
+  robot_framework:
+    enabled: true
+    documentation: "https://robotframework.org/"
+  mcp:
+    enabled: true
+    documentation: "https://github.com/modelcontextprotocol"
+
+# Message Bus Configuration
+messagebus:
+  zmq:
+    enabled: true
+    endpoint: "tcp://localhost:5555"
+    documentation: "https://zeromq.org"
+  mqtt:
+    enabled: false
+    broker: "localhost"
+    port: 1883
+    documentation: "https://mqtt.org/"
+
+# Data Warehouse Configuration
+datawarehouse:
+  clickhouse:
+    enabled: true
+    host: "localhost"
+    port: 8123
+    database: "nbgo"
+    documentation: "https://clickhouse.com/docs"
+  influxdb:
+    enabled: true
+    url: "http://localhost:8086"
+    org: "nbgo"
+    bucket: "nbgo"
+    documentation: "https://docs.influxdata.com"
+  parquet:
+    enabled: true
+    basepath: "./data/parquet"
+    documentation: "https://parquet.apache.org/docs"
+
+# Monitoring Configuration
+monitoring:
+  victoriametrics:
+    enabled: true
+    url: "http://localhost:8428"
+    documentation: "https://docs.victoriametrics.com"
+  influxdb_monitoring:
+    enabled: true
+    url: "http://localhost:8086"
+    documentation: "https://docs.influxdata.com"
+  grafana:
+    enabled: true
+    url: "http://localhost:3000"
+    apikey: "admin"
+    documentation: "https://grafana.com/docs"
+
+# Gateway Configuration
+gateways:
+  gate:
+    enabled: true
+    api_url: "https://api.gateio.ws"
+    documentation: "https://www.gate.com/gate-api"
+  freedx:
+    enabled: false
+    api_url: "https://api.freedx.io"
+    documentation: "https://docs.exchange.freedx.com"
+
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 8080
+  tls: false
+  certfile: ""
+  keyfile: ""
+
+# Runtime Configuration
+runtime:
+  workers: 4
+  maxconnections: 1000
+  healthcheck_interval: 30s
+  shutdown_timeout: 30s
+
+# Logging Configuration
+logging:
+  level: "info"
+  format: "json"
+  output: "stdout"
+
+# API Configuration
+api:
+  version: "v1"
+  base_path: "/api/v1"
+  timeout: 30s
+  max_request_size: 10485760  # 10MB

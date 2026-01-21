@@ -34,8 +34,8 @@ func newSpotOrderTester() (*spotOrderTester, error) {
 
 	tester, err := gate.NewWsService(nil, nil, gate.NewConnConfFromOption(&gate.ConfOptions{
 		// URL:          "",
-		Key:          "", // required
-		Secret:       "", // required
+		Key:          "38e92d81c9612ed8c46bbae3484c06a4",
+		Secret:       "44f78afbb7054ceffd8a87eef39e01cf39551315a8245531447b299c46ccaeaa",
 		MaxRetryConn: 5,
 	}))
 	if err != nil {

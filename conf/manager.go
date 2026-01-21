@@ -9,6 +9,8 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	"gopkg.in/yaml.v2"
 )
 
 // ConfigManager manages all configurations for NBGO
@@ -198,6 +200,27 @@ func (cm *ConfigManager) LoadJSON(filePath string) error {
 
 	var config map[string]interface{}
 	if err := json.Unmarshal(data, &config); err != nil {
+		return fmt.Errorf("unmarshal error: %w", err)
+	}
+
+	cm.mu.Lock()
+	cm.config = config
+	cm.lastModified = time.Now()
+	cm.mu.Unlock()
+
+	cm.log("Configuration loaded from %s", filePath)
+	return nil
+}
+
+// LoadYAML loads configuration from YAML file
+func (cm *ConfigManager) LoadYAML(filePath string) error {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		return fmt.Errorf("read error: %w", err)
+	}
+
+	var config map[string]interface{}
+	if err := yaml.Unmarshal(data, &config); err != nil {
 		return fmt.Errorf("unmarshal error: %w", err)
 	}
 

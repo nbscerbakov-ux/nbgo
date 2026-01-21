@@ -29,7 +29,7 @@ func RunCLI(args []string) error {
 
 	// Load configuration using config manager
 	cfgMgr := conf.NewManager()
-	if err := cfgMgr.LoadJSON(*configPath); err != nil {
+	if err := cfgMgr.LoadYAML(*configPath); err != nil {
 		logger.Warnf("Failed to load configuration file %s, using defaults: %v", *configPath, err)
 	}
 	cfg := &conf.Config{
